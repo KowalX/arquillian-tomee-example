@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Resources>
+	<Resource id="example-db" type="DataSource">
+		JdbcDriver org.hsqldb.jdbcDriver
+		JdbcUrl jdbc:hsqldb:mem:example;sql.syntax_pgs=true
+		UserName example
+		Password example1234
+		JtaManaged   true
+	</Resource>
+</Resources>
