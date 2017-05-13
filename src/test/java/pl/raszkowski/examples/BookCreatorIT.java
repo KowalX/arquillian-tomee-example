@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +19,7 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(Arquillian.class)
 public class BookCreatorIT {
     @Deployment
-    public static JavaArchive createDeployment() {
+    public static WebArchive createDeployment() {
         return new DeploymentBuilder()
                 .withClass(BookCreator.class)
                 .withClass(Book.class)

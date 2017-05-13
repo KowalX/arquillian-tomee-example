@@ -6,7 +6,7 @@ import java.util.Set;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.formatter.Formatters;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 public class DeploymentBuilder {
 
@@ -24,14 +24,15 @@ public class DeploymentBuilder {
         return this;
     }
 
-    public JavaArchive build() {
+    public WebArchive build() {
         //@formatter:off
-        JavaArchive archive = ShrinkWrap.create(JavaArchive.class)
+        WebArchive archive = ShrinkWrap.create(WebArchive.class, "test.war")
 //                .addAsResource("liquibase/db-changelog.xml")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsResource("resources.xml", "resources.xml")
-                .addAsManifestResource("test-persistence.xml", "persistence.xml");
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsWebInfResource("resources.xml", "resources.xml")
+                .addAsResource("test-persistence.xml", "/META-INF/persistence.xml");
         //@formatter:on
+
         for (Class<?> additionalClass : additionalClasses) {
             archive.addClass(additionalClass);
         }
